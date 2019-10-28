@@ -1,0 +1,23 @@
+<resources>
+
+    <style name="CustomAppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+
+        <item name="colorPrimary">@android:color/white</item>
+        <item name="colorPrimaryDark">@color/colorBlue</item>
+        <item name="colorAccent">@color/colorRed</item>
+
+        <item name="android:colorBackground">@android:color/white</item>
+        <item name="snackbarStyle">@style/CustomAppTheme.SnackBar</item>
+
+    </style>
+
+    <style name="CustomAppTheme.Toolbar"  parent="ThemeOverlay.AppCompat.ActionBar">
+        <item name="colorControlNormal">@color/colorBlue</item>
+        <item name="android:textColorPrimary">@color/colorBlue</item>
+    </style>
+
+    <style name="CustomAppTheme.SnackBar" parent="Widget.MaterialComponents.Snackbar">
+        <item name="android:backgroundTint">@color/colorBlue</item>
+    </style>
+
+</resources>

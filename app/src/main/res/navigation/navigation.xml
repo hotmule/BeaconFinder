@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation.xml"
+    app:startDestination="@id/devicesFragment">
+
+    <fragment
+        android:id="@+id/devicesFragment"
+        android:name="ru.hotmule.beaconfinder.ui.devices.DevicesFragment"
+        android:label="@string/devices_list"
+        tools:layout="@layout/fragment_devices">
+
+        <action
+            android:id="@+id/action_devicesFragment_to_beaconFragment"
+            app:destination="@id/beaconFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/beaconFragment"
+        android:name="ru.hotmule.beaconfinder.ui.beacon.BeaconFragment"
+        android:label="{mac}"
+        tools:layout="@layout/fragment_beacon">
+
+        <argument
+            android:name="mac"
+            app:argType="string" />
+
+    </fragment>
+
+</navigation>

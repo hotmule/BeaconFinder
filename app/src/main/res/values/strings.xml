@@ -1,0 +1,20 @@
+<resources>
+
+    <string name="app_name">BeaconFinder</string>
+
+    <string name="devices_list">Список устройств</string>
+    <string name="beacons_only">Только Beacon маяки</string>
+    <string name="ble_not_available_title">Bluetooth LE недоступен</string>
+    <string name="ble_not_available_message">Ваше устройство не поддерживает Bluetooth LE</string>
+    <string name="no_devices">Устройств не найдено</string>
+    <string name="device_is_not_beacon">Устройство не является Beacon маяком</string>
+    <string name="uuid">UUID:</string>
+    <string name="major">Major:</string>
+    <string name="minor">Minor:</string>
+    <string name="rssi">RSSI:</string>
+    <string name="distance">Расстояние:</string>
+    <string name="dbm">%s dBm</string>
+    <string name="meters">%s м</string>
+    <string name="ok">Ок</string>
+
+</resources>
