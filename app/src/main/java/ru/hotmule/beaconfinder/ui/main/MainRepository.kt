@@ -9,7 +9,7 @@ class MainRepository(private val devicesSource: BleDevicesSource,
                      private val devicesDao: BleDevicesDao) {
 
     private val refreshDeviceJob = Job()
-    private val refreshDeviceScope = CoroutineScope(refreshDeviceJob + Dispatchers.Main)
+    private val refreshDeviceScope = CoroutineScope(refreshDeviceJob + Dispatchers.IO)
 
     fun startBleDevicesScanning() {
 
@@ -18,38 +18,21 @@ class MainRepository(private val devicesSource: BleDevicesSource,
             object : BleDevicesSource.BeaconsListener {
 
                 override fun onBeaconsDiscovered(devices: List<BleDevice>) {
-                    refreshDeviceScope.launch { refreshDevices(devices) }
+                    refreshDeviceScope.launch { devicesDao.insertAll(devices) }
                 }
             },
 
             object : BleDevicesSource.NonBeaconListener {
 
                 override fun onNonBeaconDiscovered(device: BleDevice) {
-                    refreshDeviceScope.launch { refreshDevice(device) }
+                    refreshDeviceScope.launch { devicesDao.insert(device) }
                 }
             }
         )
     }
 
-    suspend fun refreshDevices(devices: List<BleDevice>) {
-        withContext(Dispatchers.IO) {
-            devicesDao.insertAll(devices)
-        }
-    }
-
-    suspend fun refreshDevice(device: BleDevice) {
-        withContext(Dispatchers.IO) {
-            devicesDao.insert(device)
-        }
-    }
-
-    suspend fun clearDevices() {
-        withContext(Dispatchers.IO) {
-            devicesDao.deleteAll()
-        }
-    }
-
     fun stopBleDevicesScanning() {
-        refreshDeviceScope.launch { clearDevices() }
+        //devicesSource.stop()
+        refreshDeviceScope.launch { devicesDao.deleteAll() }
     }
 }

@@ -4,11 +4,11 @@ import androidx.lifecycle.ViewModel
 
 class MainViewModel(private val repository: MainRepository) : ViewModel() {
 
-    var permissionGranted = false
+    private var _permissionGranted = false
 
     fun permissionGranted() {
-        if (!permissionGranted) {
-            permissionGranted = true
+        if (!_permissionGranted) {
+            _permissionGranted = true
             repository.startBleDevicesScanning()
         }
     }

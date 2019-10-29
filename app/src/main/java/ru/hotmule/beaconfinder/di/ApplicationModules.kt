@@ -5,6 +5,8 @@ import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import ru.hotmule.beaconfinder.data.ble.BleDevicesSource
 import ru.hotmule.beaconfinder.data.db.BleDevicesDb
+import ru.hotmule.beaconfinder.ui.beacon.BeaconRepository
+import ru.hotmule.beaconfinder.ui.beacon.BeaconViewModel
 import ru.hotmule.beaconfinder.ui.devices.DevicesRepository
 import ru.hotmule.beaconfinder.ui.main.MainRepository
 import ru.hotmule.beaconfinder.ui.devices.DevicesViewModel
@@ -26,7 +28,11 @@ val applicationModule = module {
 
     single { DevicesRepository(get()) }
 
+    single { BeaconRepository(get()) }
+
     viewModel { MainViewModel(get()) }
 
     viewModel { DevicesViewModel(get()) }
+
+    viewModel { BeaconViewModel(get()) }
 }

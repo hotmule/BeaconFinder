@@ -13,7 +13,6 @@
     <string name="minor">Minor:</string>
     <string name="rssi">RSSI:</string>
     <string name="distance">Расстояние:</string>
-    <string name="dbm">%s dBm</string>
     <string name="meters">%s м</string>
     <string name="ok">Ок</string>
 
