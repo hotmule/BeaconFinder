@@ -3,6 +3,8 @@ package ru.hotmule.beaconfinder.ui.beacon
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import java.util.*
+import kotlin.collections.ArrayList
 
 class BeaconViewModel(private val repository: BeaconRepository) : ViewModel() {
 
@@ -31,4 +33,6 @@ class BeaconViewModel(private val repository: BeaconRepository) : ViewModel() {
         data.add(0, item)
         return liveData.apply { value = data }
     }
+
+    val syncDate = MutableLiveData<Date>(Calendar.getInstance().time)
 }

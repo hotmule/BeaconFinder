@@ -10,6 +10,10 @@
             name="viewModel"
             type="ru.hotmule.beaconfinder.ui.beacon.BeaconViewModel" />
 
+        <variable
+            name="syncDate"
+            type="java.util.Date" />
+
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -146,6 +150,27 @@
                 android:layout_height="50dp"
                 app:top="-26"
                 app:bottom="-100"/>
+
+            <TextView
+                android:id="@+id/tv_sync_date_title"
+                android:layout_marginTop="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/last_sync"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/chart_rssi" />
+
+            <TextView
+                android:id="@+id/tv_sync_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:textSize="24sp"
+                app:date="@{syncDate}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_sync_date_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="@tools:sample/lorem"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -15,5 +15,6 @@
     <string name="distance">Расстояние:</string>
     <string name="meters">%s м</string>
     <string name="ok">Ок</string>
+    <string name="last_sync">Последня синхронизация с сервером:</string>
 
 </resources>

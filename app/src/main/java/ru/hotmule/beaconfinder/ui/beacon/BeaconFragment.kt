@@ -42,6 +42,10 @@ class BeaconFragment : Fragment() {
             distanceData.observe(context, Observer {
                 binding.chartDistance.data = it
             })
+
+            syncDate.observe(context, Observer {
+                binding.syncDate = it
+            })
         }
 
         return binding.root
