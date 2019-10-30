@@ -6,7 +6,7 @@ import ru.hotmule.beaconfinder.data.db.BleDevicesDao
 
 class DevicesRepository(private val devicesDao: BleDevicesDao) {
 
-    fun getDevices(beaconsOnly: Boolean) = liveData(Dispatchers.IO) {
+    fun getDevices(beaconsOnly: Boolean) = liveData {
 
         val devices = if (beaconsOnly)
             devicesDao.getBeacons()

@@ -1,30 +1,48 @@
 package ru.hotmule.beaconfinder.di
 
 import androidx.room.Room
+import org.altbeacon.beacon.BeaconManager
+import org.altbeacon.beacon.BeaconParser
+import org.koin.android.ext.koin.androidContext
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
-import ru.hotmule.beaconfinder.data.ble.BleDevicesSource
+import retrofit2.Retrofit
+import ru.hotmule.beaconfinder.data.api.BleDevicesApi
+import ru.hotmule.beaconfinder.ui.main.MainRepository
 import ru.hotmule.beaconfinder.data.db.BleDevicesDb
 import ru.hotmule.beaconfinder.ui.beacon.BeaconRepository
 import ru.hotmule.beaconfinder.ui.beacon.BeaconViewModel
 import ru.hotmule.beaconfinder.ui.devices.DevicesRepository
-import ru.hotmule.beaconfinder.ui.main.MainRepository
 import ru.hotmule.beaconfinder.ui.devices.DevicesViewModel
 import ru.hotmule.beaconfinder.ui.main.MainViewModel
 
 val applicationModule = module {
 
-    single { BleDevicesSource(get()) }
+    single {
+        BeaconManager.getInstanceForApplication(androidContext()).apply {
+            foregroundBetweenScanPeriod = 500
+            beaconParsers.add(
+                BeaconParser().setBeaconLayout("m:0-3=4c000215,i:4-19,i:20-21,i:22-23,p:24-24"))
+        }
+    }
 
     single {
-        Room.databaseBuilder(get(), BleDevicesDb::class.java, "ble_devices_db")
+        Room.databaseBuilder(androidContext(), BleDevicesDb::class.java, "ble_devices_db")
             .fallbackToDestructiveMigration()
+            .build()
+    }
+
+    single {
+        Retrofit.Builder()
+            .baseUrl("https://hotmulebeacon.herokuapp.com/")
             .build()
     }
 
     single { get<BleDevicesDb>().devicesDao }
 
-    single { MainRepository(get(), get()) }
+    single { get<Retrofit>().create(BleDevicesApi::class.java) }
+
+    single { MainRepository(androidContext(), get(), get()) }
 
     single { DevicesRepository(get()) }
 

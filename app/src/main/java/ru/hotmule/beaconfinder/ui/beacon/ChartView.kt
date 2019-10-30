@@ -7,6 +7,8 @@ import android.graphics.Paint.Join
 import android.util.AttributeSet
 import androidx.core.content.ContextCompat
 import com.example.findbeacon.R
+import ru.hotmule.beaconfinder.utils.dpToPx
+import ru.hotmule.beaconfinder.utils.pxToDp
 import kotlin.math.abs
 
 
@@ -22,7 +24,7 @@ class ChartView(internal var context: Context,
     private var chartTop = 0f
     private var chartBottom = 0f
 
-    var step = 100
+    var step = 50
     var stepLength = 0
 
     var data: List<Float> = listOf()
@@ -50,14 +52,14 @@ class ChartView(internal var context: Context,
         paint.style = Paint.Style.STROKE
         paint.strokeJoin = Join.ROUND
         paint.strokeCap = Paint.Cap.ROUND
-        paint.strokeWidth = 4f.dpToPx()
+        paint.strokeWidth = 4f.dpToPx(context)
         paint.pathEffect = CornerPathEffect(50f)
     }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
-        end = w.pxToDp()
-        top = h.pxToDp()
+        end = w.pxToDp(context)
+        top = h.pxToDp(context)
         stepLength = w / step
     }
 
@@ -66,16 +68,16 @@ class ChartView(internal var context: Context,
 
         if (data.size > 1) {
 
-            var x = end.dpToPx()
+            var x = end.dpToPx(context)
             var y = isOutOfChart(data[0])
 
-            path.moveTo(x, getProportionalY(y.dpToPx()))
+            path.moveTo(x, getProportionalY(y.dpToPx(context)))
 
             for (i in 1 until data.size) {
 
                 y = isOutOfChart(data[i])
                 x -= stepLength
-                path.lineTo(x, getProportionalY(y.dpToPx()))
+                path.lineTo(x, getProportionalY(y.dpToPx(context)))
 
                 if (i == step)
                     break
@@ -99,8 +101,4 @@ class ChartView(internal var context: Context,
 
     private fun getProportionalY(chartY: Float)
         = abs((chartY - chartBottom) / (chartTop - chartBottom) * (top - bottom))
-
-    private fun Int.pxToDp() = this / context.resources.displayMetrics.density
-
-    private fun Float.dpToPx() = this * context.resources.displayMetrics.density
 }

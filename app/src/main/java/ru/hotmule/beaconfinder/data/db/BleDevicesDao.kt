@@ -8,10 +8,13 @@ import ru.hotmule.beaconfinder.data.BleDevice
 interface BleDevicesDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(device: BleDevice)
+    suspend fun insert(device: BleDevice)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(devices: List<BleDevice>)
+    suspend fun insertAll(devices: List<BleDevice>)
+
+    @Query("DELETE FROM ble_devices_table")
+    suspend fun deleteAll()
 
     @Query("SELECT * FROM ble_devices_table ORDER BY mac")
     fun getAllDevices() : LiveData<List<BleDevice>>
@@ -21,7 +24,4 @@ interface BleDevicesDao {
 
     @Query("SELECT * FROM ble_devices_table WHERE mac = :mac")
     fun getBeacon(mac: String) : LiveData<BleDevice>
-
-    @Query("DELETE FROM ble_devices_table")
-    fun deleteAll()
 }
