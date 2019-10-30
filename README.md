@@ -1,5 +1,5 @@
 # BeaconFinder
-Приложение для обнаружения ближайших iBeacon/altBeacon маяков
+Приложение для обнаружения ближайших Bluetooth LE iBeacon/altBeacon маяков
 
 <img src="screenshots/Screenshot_20191029-193158.png" width="280px"> <img src="screenshots/Screenshot_20191029-193153.png" width="280px"> <img src="screenshots/Screenshot_20191029-192611.png" width="280px">
 
@@ -8,7 +8,7 @@
 - Возможность переключения между всеми BLE устройствами и Beacon маяками в частности
 - Обновление списка маяков в зависимости от расстояния в реальном времени
 - Экран с деталями о маяке (UUID, major, minor, расстояние, RSSI, последняя синхронизация с сервером)
-- Рисование графиков расстояния и RSSI в реальном времени
+- Рисование графиков RSSI и расстояния в реальном времени
 - ~~Сглаживание графиков путем интерполяции сплайнами~~
 - ~~Синхронизация маяка с сервером:~~ [BeaconFinderService](https://github.com/hotmule/BeaconFinderService)
 
