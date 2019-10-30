@@ -95,7 +95,6 @@ class MainRepository(private val context: Context,
 
         scope.launch {
             devicesDao.deleteAll()
-            //refreshDevicesJob.cancel()
         }
     }
 }
