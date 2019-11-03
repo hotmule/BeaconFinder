@@ -43,8 +43,8 @@ class BeaconFragment : Fragment() {
                 binding.chartDistance.data = it
             })
 
-            syncDate.observe(context, Observer {
-                binding.syncDate = it
+            beaconSync.observe(context, Observer {
+                binding.syncDate = it.date
             })
         }
 

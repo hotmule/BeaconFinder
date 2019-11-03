@@ -1,10 +1,9 @@
 package ru.hotmule.beaconfinder.ui.devices
 
 import androidx.lifecycle.liveData
-import kotlinx.coroutines.Dispatchers
-import ru.hotmule.beaconfinder.data.db.BleDevicesDao
+import ru.hotmule.beaconfinder.data.db.dao.DevicesDao
 
-class DevicesRepository(private val devicesDao: BleDevicesDao) {
+class DevicesRepository(private val devicesDao: DevicesDao) {
 
     fun getDevices(beaconsOnly: Boolean) = liveData {
 

@@ -10,7 +10,7 @@
 - Экран с деталями о маяке (UUID, major, minor, расстояние, RSSI, последняя синхронизация с сервером)
 - Рисование графиков расстояния и RSSI в реальном времени
 - ~~Сглаживание графиков путем интерполяции сплайнами~~
-- ~~Синхронизация маяка с сервером:~~ [BeaconFinderService](https://github.com/hotmule/BeaconFinderService)
+- Синхронизация маяка с сервером: [BeaconFinderService](https://github.com/hotmule/BeaconFinderService)
 
 ## В проекте используются:
 - [Android Jetpack Components](https://developer.android.com/jetpack)

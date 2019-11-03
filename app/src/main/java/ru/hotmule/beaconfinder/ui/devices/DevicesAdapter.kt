@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.findbeacon.databinding.ItemDeviceBinding
-import ru.hotmule.beaconfinder.data.BleDevice
+import ru.hotmule.beaconfinder.data.db.models.BleDevice
 
 class DevicesAdapter(private val clickListener: DeviceClickListener)
     : ListAdapter<BleDevice, DevicesAdapter.ViewHolder>(DevicesDiffCallback()) {

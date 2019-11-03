@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import ru.hotmule.beaconfinder.data.BleDevice
+import ru.hotmule.beaconfinder.data.db.models.BleDevice
 
 class DevicesViewModel(private val repository: DevicesRepository) : ViewModel() {
 

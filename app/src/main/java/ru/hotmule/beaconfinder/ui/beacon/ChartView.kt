@@ -24,7 +24,7 @@ class ChartView(internal var context: Context,
     private var chartTop = 0f
     private var chartBottom = 0f
 
-    var step = 50
+    var step = 20
     var stepLength = 0
 
     var data: List<Float> = listOf()
@@ -53,7 +53,6 @@ class ChartView(internal var context: Context,
         paint.strokeJoin = Join.ROUND
         paint.strokeCap = Paint.Cap.ROUND
         paint.strokeWidth = 4f.dpToPx(context)
-        paint.pathEffect = CornerPathEffect(50f)
     }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {

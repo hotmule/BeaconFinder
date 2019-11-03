@@ -1,11 +1,12 @@
-package ru.hotmule.beaconfinder.data.db
+package ru.hotmule.beaconfinder.data.db.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import ru.hotmule.beaconfinder.data.BleDevice
+import ru.hotmule.beaconfinder.data.db.models.Beacon
+import ru.hotmule.beaconfinder.data.db.models.BleDevice
 
 @Dao
-interface BleDevicesDao {
+interface DevicesDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(device: BleDevice)

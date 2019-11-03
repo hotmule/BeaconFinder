@@ -6,6 +6,8 @@
 
     <data>
 
+        <import type="android.view.View"/>
+
         <variable
             name="viewModel"
             type="ru.hotmule.beaconfinder.ui.beacon.BeaconViewModel" />
@@ -156,6 +158,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:visibility="@{syncDate != null ? View.VISIBLE : View.GONE}"
                 android:text="@string/last_sync"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/chart_rssi" />
@@ -166,11 +169,11 @@
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
                 android:textSize="24sp"
+                android:visibility="@{syncDate != null ? View.VISIBLE : View.GONE}"
                 app:date="@{syncDate}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_sync_date_title"
-                app:layout_constraintEnd_toEndOf="parent"
-                tools:text="@tools:sample/lorem"/>
+                app:layout_constraintEnd_toEndOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

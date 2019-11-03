@@ -2,6 +2,7 @@ package ru.hotmule.beaconfinder.utils
 
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import com.example.findbeacon.R
 import java.text.SimpleDateFormat
 import java.util.*
 
