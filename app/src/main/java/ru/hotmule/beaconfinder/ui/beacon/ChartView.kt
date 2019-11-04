@@ -24,8 +24,10 @@ class ChartView(internal var context: Context,
     private var chartTop = 0f
     private var chartBottom = 0f
 
-    var step = 20
-    var stepLength = 0
+    private var step = 20
+    private var stepLength = 0
+
+    private val segmentLength = 3f.dpToPx(context)
 
     var data: List<Float> = listOf()
     set(value) {
@@ -67,19 +69,38 @@ class ChartView(internal var context: Context,
 
         if (data.size > 1) {
 
-            var x = end.dpToPx(context)
-            var y = isOutOfChart(data[0])
+            val xPoints = mutableListOf<Float>()
+            val yPoints = mutableListOf<Float>()
 
-            path.moveTo(x, getProportionalY(y.dpToPx(context)))
+            val firstX = end.dpToPx(context)
 
-            for (i in 1 until data.size) {
+            var x = firstX
+            var y: Float
 
-                y = isOutOfChart(data[i])
+            for (i in data.indices) {
+
+                y = getProportionalY(data[i])
+
+                xPoints.add(x)
+                yPoints.add(y)
+
                 x -= stepLength
-                path.lineTo(x, getProportionalY(y.dpToPx(context)))
+                if (i == step) break
+            }
 
-                if (i == step)
-                    break
+            val spline = Spline.generate(xPoints.reversed(), yPoints.reversed())
+
+            path.moveTo(xPoints[0], yPoints[0])
+
+            x = firstX
+            val lastXIndex = if (data.size - 1 < step) data.size - 1 else step
+
+            while (x >= xPoints[lastXIndex]) {
+
+                x -= segmentLength
+                y = spline.interpolate(x)
+
+                path.lineTo(x, y)
             }
 
             canvas.drawPath(path, paint)
@@ -87,17 +108,6 @@ class ChartView(internal var context: Context,
         }
     }
 
-    private fun isOutOfChart(y: Float): Float {
-
-        if (y > chartTop)
-            return chartTop
-
-        if (y < chartBottom)
-            return chartBottom
-
-        return y
-    }
-
-    private fun getProportionalY(chartY: Float)
-        = abs((chartY - chartBottom) / (chartTop - chartBottom) * (top - bottom))
+    private fun getProportionalY(chartY: Float) = abs(
+        ((chartY - chartBottom) / (chartTop - chartBottom) * (top - bottom))).dpToPx(context)
 }
